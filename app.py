@@ -49,7 +49,7 @@ async def forward_notice(update: Update, context: ContextTypes.DEFAULT_TYPE):
             "title": "📢 알려요",
             "description": text[:4096] if text else "내용 없음",
             "color": 5814783,  # 파란색
-            "timestamp": datetime.now().isoformat(),
+            "timestamp": datetime.datetime.now().isoformat(),
             "footer": {
                 "text": f"{post.chat.title if post.chat.title else '알 수 없음'}"
             }
