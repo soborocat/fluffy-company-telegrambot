@@ -40,16 +40,13 @@ async def forward_notice(update: Update, context: ContextTypes.DEFAULT_TYPE):
             # 링크 처리: <a href="url">text</a> → [text](url)
             import re
             text = re.sub(r'<a href="([^"]*)"[^>]*>(.*?)</a>', r'[\2](\1)', text)
-            
-            # 나머지 HTML 태그 제거
-            text = re.sub(r'<[^>]+>', '', text)
-        
+                    
         # Discord Embed 구성
         embed = {
             "title": "📢 알려요",
             "description": text[:4096] if text else "내용 없음",
             "color": 5814783,  # 파란색
-            "timestamp": datetime.datetime.now().isoformat(),
+            "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
             "footer": {
                 "text": f"{post.chat.title if post.chat.title else '알 수 없음'}"
             }
